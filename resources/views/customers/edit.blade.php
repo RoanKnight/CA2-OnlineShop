@@ -37,7 +37,7 @@
     <div>
       <label>Phone Number</label>
 
-      <input type="text" name="phone_number" id="phone_number" value="{{ old('phone_number') ? : $todo->title }}" />
+      <input type="text" name="phone_number" id="phone_number" value="{{ old('phone_number') ? : $customer->phone_number }}" />
 
       @if($errors->has('phone_number'))
           <span> {{ $errors->first('phone_number') }} </span>

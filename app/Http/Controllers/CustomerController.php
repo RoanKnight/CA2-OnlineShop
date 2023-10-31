@@ -12,7 +12,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = Customer::orderBy('first_name', 'desc')->paginate(8);
+        $customers = Customer::orderBy('first_name', 'desc')->paginate(10);
 
         return view('customers.index', [
             'customers' => $customers 
@@ -32,7 +32,6 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-
         // dd($request->title)
 
         // validation rules
@@ -40,7 +39,7 @@ class CustomerController extends Controller
         $rules = [
             'first_name' => 'required|string|min:2|max:150',
             'last_name' => 'required|string|min:2|max:150',
-            'phone_number' => 'required|string|unique:customers,email|min:2|max:150',
+            'phone_number' => 'required|string|unique:customers,phone_number|min:2|max:150',
             'email' => 'required|string|min:5|max:1000|unique:customers,email'
         ];
 
@@ -59,7 +58,6 @@ class CustomerController extends Controller
         $customer->save();
 
         return redirect()->route('customers.index')->with('status', 'Created a new customer');
-
     }
 
     /**
@@ -94,7 +92,7 @@ class CustomerController extends Controller
         $rules = [
           'first_name' => "required|string|min:2|max:150",
           'last_name' => "required|string|min:2|max:150",
-          'phone_number' => "required|string|min:2|max:150|unique:customers,phone_number",
+          'phone_number' => "required|string|unique:customers,phone_number,{$id}",
           'email' => "required|string|min:5|max:1000|unique:customers,email,{$id}"
         ];
 
