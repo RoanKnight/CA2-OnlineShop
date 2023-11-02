@@ -31,11 +31,11 @@
         </div>
     @endif
 
-    <script>
+    {{-- <script>
        let alert = document.getElementById('alert');
        setTimeout(() => {
         alert.remove();
        }, 2000);
-    </script>
+    </script> --}}
 </body>
 </html>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,7 @@ Route::get('/', function () {
 });
 
 Route::resource('customers', CustomerController::class);
+Route::resource('orders', OrderController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
