@@ -2,12 +2,12 @@
 
 @section('header')
 <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-    Orders
+    Products
 </h2>
 @endsection
 
 @section('content')
- <a href="{{route('orders.create')}}">Create</a>
+ <a href="{{route('products.create')}}">Create</a>
 
  
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -15,10 +15,16 @@
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
-                    Order date
+                    Name
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Customer id
+                    Price (in €)
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Brand
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Stock
                 </th>
                 <th scope="col" class="px-6 py-3">
                   Action
@@ -26,21 +32,27 @@
             </tr>
         </thead>
 
-        @forelse($orders as $order)
+        @forelse($products as $product)
         <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                {{ $order->order_date }}
+                {{ $product->name }}
             </th>
             <td class="px-6 py-4">
-                {{ $order->customer_id }}
+                {{ $product->price }}
             </td>
             <td class="px-6 py-4">
-                <a href="{{route('orders.show', $order->id)}}" >Edit</a>
+                {{ $product->brand }}
+            </td>
+            <td class="px-6 py-4">
+              {{ $product->stock }}
+            </td>
+            <td class="px-6 py-4">
+                <a href="{{route('products.show', $product->id)}}" >Edit</a>
             </td>
         </tr>
 
     @empty
-        <h4>No Orders found!</h4>
+        <h4>No Products found!</h4>
     @endforelse
     </table>
 </div>

@@ -27,7 +27,19 @@
                   <x-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.index')">
                       {{ __('Orders') }}
                   </x-nav-link>
-                  </div>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                  <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
+                      {{ __('Products') }}
+                  </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                  <x-nav-link :href="route('order_products.index')" :active="request()->routeIs('order_products.index')">
+                      {{ __('Order_products') }}
+                  </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

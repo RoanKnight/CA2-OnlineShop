@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Customer;
 use App\Models\Order;
+use App\Models\Product;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,8 +16,9 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
       $this->call([
-        CustomerSeeder::class
-        OrderSeeder::class
+        CustomerSeeder::class,
+        OrderSeeder::class,
+        ProductSeeder::class
     ]);
     }
 }

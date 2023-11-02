@@ -1,7 +1,7 @@
 @extends('layouts.myApp')
 
 @section('content')
-<h3>Edit Customer</h3>
+<h3>Edit Order</h3>
 
 {{-- @if ($errors->any())
     <div class="alert alert-danger">
@@ -26,7 +26,7 @@
         @endif
     </div>
     <div>
-        <label>Customer</label>
+        <label>Customer id</label>
 
         <input type="text" name="customer_id" id="customer_id" value="{{ old('customer_id') ? : $order->customer_id }}"/>
 

@@ -37,15 +37,18 @@ class ProductController extends Controller
         // validation rules
 
         $rules = [
-            'name' => 'required|date',
-            'price' => 'required|string,',
-            'brand' => 'required|string',
-            'stock' => 'required|BigInteger'
+          'name' => "required|unique:products,name|string|min:5,{$id}",
+          'price' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
+          'brand' => "required|string",
+          'stock' => "required|integer"
         ];
 
         $messages = [
           'name' => 'The name is required',
+          'name.min' => 'The name must be at least 5 characters',
           'price' => 'The price is required',
+          'price.regex' => 'The price is not in the correct format',
+          'price.numeric' => 'The price must be numeric',
           'brand' => 'The brand is required',
           'stock' => 'The stock is required',
         ];
@@ -92,15 +95,18 @@ class ProductController extends Controller
     {
         {
         $rules = [
-          'name' => "required|date,{$id}",
-          'price' => "required|string",
+          'name' => "required|unique:products,name|string|min:5,{$id}",
+          'price' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
           'brand' => "required|string",
-          'stock' => "required|BigInteger"
+          'stock' => "required|integer"
         ];
 
         $messages = [
           'name' => 'The name is required',
+          'name.min' => 'The name must be at least 5 characters',
           'price' => 'The price is required',
+          'price.regex' => 'The price is not in the correct format',
+          'price.numeric' => 'The price must be numeric',
           'brand' => 'The brand is required',
           'stock' => 'The stock is required',
         ];
@@ -124,9 +130,9 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        $order = Order::findOrFail($id);
-        $order->delete();
+        $product = Product::findOrFail($id);
+        $product->delete();
 
-        return redirect()->route('orders.index')->with('status', 'Order deleted successfully');
+        return redirect()->route('products.index')->with('status', 'Product deleted successfully');
     }
 }

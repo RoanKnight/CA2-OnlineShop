@@ -39,13 +39,15 @@ class CustomerController extends Controller
         $rules = [
             'first_name' => 'required|string|min:2|max:150',
             'last_name' => 'required|string|min:2|max:150',
-            'phone_number' => 'required|string|unique:customers,phone_number|min:2|max:150',
-            'email' => 'required|string|min:5|max:1000|unique:customers,email'
+            'phone_number' => "required|unique:customers,phone_number|regex:/^08[35679]\d{7}$/",
+            'email' => 'required|email|unique:customers,email|min:5|max:1000',
         ];
 
         $messages = [
             'email.unique' => 'customer email should be unique',
-            'phone_number.unique' => 'customer email should be unique'
+            'email.email' => 'The :attribute must be a valid email address.',
+            'phone_number.unique' => 'customer email should be unique',
+            'phone_number.regex' => 'The phone number must be a valid Irish mobile phone number',
         ];
 
         $request->validate($rules, $messages);
@@ -89,16 +91,18 @@ class CustomerController extends Controller
     public function update(Request $request, string $id)
     {
         {
-        $rules = [
-          'first_name' => "required|string|min:2|max:150",
-          'last_name' => "required|string|min:2|max:150",
-          'phone_number' => "required|string|unique:customers,phone_number,{$id}",
-          'email' => "required|string|min:5|max:1000|unique:customers,email,{$id}"
+          $rules = [
+            'first_name' => 'required|string|min:2|max:150',
+            'last_name' => 'required|string|min:2|max:150',
+            'phone_number' => "|required|unique:customers,phone_number,{$id}|regex:/^08[35679]\d{7}$/",
+            'email' => "required|email|unique:customers,email,{$id}|min:5|max:1000",
         ];
 
         $messages = [
-            'email.unique' => 'Customer email should be unique',
-            'phone_number.unique' => 'Customer phone number should be unique'
+            'email.unique' => 'customer email should be unique',
+            'email.email' => 'The :attribute must be a valid email address.',
+            'phone_number.unique' => 'customer email should be unique',
+            'phone_number.regex' => 'The phone number must be a valid Irish mobile phone number',
         ];
 
         $request->validate($rules, $messages);
