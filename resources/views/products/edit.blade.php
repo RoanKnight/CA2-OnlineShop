@@ -1,7 +1,12 @@
 @extends('layouts.myApp')
 
+@section('header')
+<h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+    Edit Product
+</h2>
+@endsection
+
 @section('content')
-<h3>Edit Product</h3>
 
 {{-- @if ($errors->any())
     <div class="alert alert-danger">
@@ -46,7 +51,7 @@
     <div>
       <label>Stock</label>
 
-      <input type="text" name="stock" id="stock" value="{{ old('stock') ? : $product->stock }}" />
+      <input type="integer" name="stock" id="stock" value="{{ old('stock') ? : $product->stock }}" />
 
       @if($errors->has('stock'))
           <span> {{ $errors->first('stock') }} </span>

@@ -1,7 +1,12 @@
 @extends('layouts.myApp')
 
+@section('header')
+<h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+    Create Customer
+</h2>
+@endsection
+
 @section('content')
-<h3>Create Customer</h3>
 
 {{-- @if ($errors->any())
     <div class="alert alert-danger">
@@ -38,7 +43,7 @@
     </div>
     <div>
       <label>Email</label>
-      <input type="text" name="email" id="email" value="{{ old('email') }}"/>
+      <input type="email" name="email" id="email" value="{{ old('email') }}"/>
       @if($errors->has('email'))
           <span> {{ $errors->first('email') }} </span>
       @endif

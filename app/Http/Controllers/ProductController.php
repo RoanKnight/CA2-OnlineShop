@@ -37,7 +37,7 @@ class ProductController extends Controller
         // validation rules
 
         $rules = [
-          'name' => "required|unique:products,name|string|min:5,{$id}",
+          'name' => 'required|unique:products,name|string|min:5',
           'price' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
           'brand' => "required|string",
           'stock' => "required|integer"
@@ -57,8 +57,8 @@ class ProductController extends Controller
 
         $product = new Product;
         $product->name = $request->name;
-        $product->price = $request->name;
-        $product->brand = $request->name;
+        $product->price = $request->price;
+        $product->brand = $request->brand;
         $product->stock = $request->stock;
         $product->save();
 
@@ -95,14 +95,14 @@ class ProductController extends Controller
     {
         {
         $rules = [
-          'name' => "required|unique:products,name|string|min:5,{$id}",
+          'name' => "required|unique:products,name,{$id}|string|min:5",
           'price' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
           'brand' => "required|string",
           'stock' => "required|integer"
         ];
 
         $messages = [
-          'name' => 'The name is required',
+          'name.unique' => 'The name should be unique',
           'name.min' => 'The name must be at least 5 characters',
           'price' => 'The price is required',
           'price.regex' => 'The price is not in the correct format',

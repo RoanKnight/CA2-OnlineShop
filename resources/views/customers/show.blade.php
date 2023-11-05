@@ -1,12 +1,17 @@
 @extends('layouts.myApp')
 
-@section('content')
-<h1>Show Customer</h1>
+@section('header')
+<h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+    Show Customer
+</h2>
+@endsection
 
-<p>{{ $customer->first_name }}</p>
-<p>{{ $customer->last_name }}</p>
-<p>{{ $customer->phone_number }}</p>
-<p>{{ $customer->email }}</p>
+@section('content')
+
+<p class="row">First Name: {{ $customer->first_name }}</p>
+<p class="row">{{ $customer->last_name }}</p>
+<p class="row">{{ $customer->phone_number }}</p>
+<p class="row">{{ $customer->email }}</p>
 
 <div>
     <a href="{{ route('customers.edit', $customer->id) }}">Edit</a>

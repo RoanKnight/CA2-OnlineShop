@@ -38,7 +38,7 @@ class OrderController extends Controller
 
         $rules = [
             'order_date' => 'required|date',
-            'customer_id' => 'required|BigInteger'
+            'customer_id' => 'required|integer'
         ];
 
         $messages = [
@@ -86,8 +86,8 @@ class OrderController extends Controller
     {
         {
         $rules = [
-          'order_date' => "required|date,{$id}",
-          'customer_id' => "required|BigInteger"
+          'order_date' => "required|date_format:Y-m-d",
+          'customer_id' => "required|integer"
         ];
 
         $messages = [

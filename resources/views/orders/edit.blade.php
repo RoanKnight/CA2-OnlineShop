@@ -1,7 +1,12 @@
 @extends('layouts.myApp')
 
+@section('header')
+<h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+    Edit Order
+</h2>
+@endsection
+
 @section('content')
-<h3>Edit Order</h3>
 
 {{-- @if ($errors->any())
     <div class="alert alert-danger">
@@ -19,7 +24,7 @@
     <div>
         <label>Order date</label>
 
-        <input type="text" name="order_date" id="order_date" value="{{ old('order_date') ? : $order->order_date }}" />
+        <input type="date" name="order_date" id="order_date" value="{{ old('order_date') ? : $order->order_date }}" />
 
         @if($errors->has('order_date'))
             <span> {{ $errors->first('order_date') }} </span>

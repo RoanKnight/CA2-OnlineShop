@@ -13,7 +13,7 @@
     </div>
 @endif --}}
 
-<form action="{{ route('customers.store') }}" method="post">
+<form action="{{ route('products.store') }}" method="post">
     @csrf
     <div>
         <label>Name</label>
@@ -38,7 +38,7 @@
     </div>
     <div>
       <label>Stock</label>
-      <input type="text" name="stock" id="stock" value="{{ old('stock') }}"/>
+      <input type="integer" name="stock" id="stock" value="{{ old('stock') }}"/>
       @if($errors->has('stock'))
           <span> {{ $errors->first('stock') }} </span>
       @endif

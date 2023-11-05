@@ -12,7 +12,7 @@ class OrderProductController extends Controller
      */
     public function index()
     {
-        $order_products = OrderProduct::orderBy('order_id', 'asc')->paginate(10);
+        $order_products = OrderProduct::orderBy('order_id', 'asc')->paginate(30);
 
         return view('order_products.index', [
             'order_products' => $order_products 
@@ -102,7 +102,7 @@ class OrderProductController extends Controller
 
         $request->validate($rules, $messages);
 
-        $order_product = new OrderProduct;
+        $order_product = OrderProduct::findOrFail($id);
         $order_product->order_id = $request->order_id;
         $order_product->product_id = $request->product_id;
         $order_product->discount_price = $request->discount_price;
@@ -119,7 +119,7 @@ class OrderProductController extends Controller
     public function destroy(string $id)
     {
         $order_product = OrderProduct::findOrFail($id);
-        $order_products->delete();
+        $order_product->delete();
 
         return redirect()->route('order_products.index')->with('status', 'Order_product deleted successfully');
     }

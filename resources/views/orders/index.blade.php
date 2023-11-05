@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
- <a href="{{route('orders.create')}}">Create</a>
+ <a class="CreateButton" href="{{route('orders.create')}}">Create new entry</a>
 
  
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -30,14 +30,14 @@
 
         @forelse($orders as $order)
         <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 {{ $order->order_date }}
-            </th>
+            </td>
             <td class="px-6 py-4">
                 {{ $order->customer_id }}
             </td>
             <td class="px-6 py-4">
-                <a href="{{route('orders.show', $order->id)}}" >Edit</a>
+                <a class="Edit" href="{{route('orders.show', $order->id)}}" >Edit</a>
             </td>
         </tr>
 

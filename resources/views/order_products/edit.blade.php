@@ -1,7 +1,12 @@
 @extends('layouts.myApp')
 
+@section('header')
+<h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+    Edit Order_product
+</h2>
+@endsection
+
 @section('content')
-<h3>Edit Product</h3>
 
 {{-- @if ($errors->any())
     <div class="alert alert-danger">
@@ -13,7 +18,7 @@
     </div>
 @endif --}}
 
-<form action="{{ route('products.update', $order_product->id) }}" method="post">
+<form action="{{ route('order_products.update', $order_product->id) }}" method="post">
     @csrf
     @method('PUT')
     <div>

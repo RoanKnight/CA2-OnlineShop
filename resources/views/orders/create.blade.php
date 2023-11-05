@@ -17,7 +17,7 @@
     @csrf
     <div>
         <label>Order date</label>
-        <input type="text" name="order_date" id="order_date" value="{{ old('order_date') }}"/>
+        <input type="date" name="order_date" id="order_date" value="{{ old('order_date') }}"/>
         @if($errors->has('order_date'))
             <span> {{ $errors->first('order_date') }} </span>
         @endif

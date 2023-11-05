@@ -94,7 +94,7 @@ class CustomerController extends Controller
           $rules = [
             'first_name' => 'required|string|min:2|max:150',
             'last_name' => 'required|string|min:2|max:150',
-            'phone_number' => "|required|unique:customers,phone_number,{$id}|regex:/^08[35679]\d{7}$/",
+            'phone_number' => "required|unique:customers,phone_number,{$id}|regex:/^08[35679]\d{7}$/",
             'email' => "required|email|unique:customers,email,{$id}|min:5|max:1000",
         ];
 

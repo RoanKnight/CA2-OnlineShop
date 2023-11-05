@@ -1,7 +1,12 @@
 @extends('layouts.myApp')
 
+@section('header')
+<h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+    Show Order_product
+</h2>
+@endsection
+
 @section('content')
-<h1>Show Order_product</h1>
 
 <p>{{ $order_product->order_id }}</p>
 <p>{{ $order_product->product_id }}</p>

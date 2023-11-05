@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
- <a href="{{route('customers.create')}}">Create</a>
+ <a class="CreateButton" href="{{route('customers.create')}}">Create new entry</a>
 
  
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -36,9 +36,9 @@
 
         @forelse($customers as $customer)
         <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 {{ $customer->first_name }}
-            </th>
+            </td>
             <td class="px-6 py-4">
                 {{ $customer->last_name }}
             </td>
@@ -49,7 +49,7 @@
               {{ $customer->email }}
             </td>
             <td class="px-6 py-4">
-                <a href="{{route('customers.show', $customer->id)}}" >Edit</a>
+                <a class="Edit" href="{{route('customers.show', $customer->id)}}" >Edit</a>
             </td>
         </tr>
 
