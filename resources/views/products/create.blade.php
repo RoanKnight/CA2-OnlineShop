@@ -1,7 +1,12 @@
 @extends('layouts.myApp')
 
+@section('header')
+<h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+    Create Product
+</h2>
+@endsection
+
 @section('content')
-<h3>Create Product</h3>
 
 {{-- @if ($errors->any())
     <div class="alert alert-danger">
@@ -14,35 +19,49 @@
 @endif --}}
 
 <form action="{{ route('products.store') }}" method="post">
-    @csrf
+  @csrf
+  <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
     <div>
-        <label>Name</label>
-        <input type="text" name="name" id="name" value="{{ old('name') }}"/>
+      <div class="headings">
+        <label class="heading">Name</label>
         @if($errors->has('name'))
-            <span> {{ $errors->first('name') }} </span>
+            <span class ="errors"> {{ $errors->first('name') }} </span>
         @endif
+      </div>
+        <input class="inputField" placeholder="Product name...." type="text" name="name" id="name" value="{{ old('name') }}"/>
     </div>
+
     <div>
-        <label>Price</label>
-        <input type="text" name="price" id="price" value="{{ old('price') }}"/>
-        @if($errors->has('price'))
-            <span> {{ $errors->first('price') }} </span>
-        @endif
+      <div class="headings">
+        <label class="heading">Price</label>
+          @if($errors->has('price'))
+            <span class="errors"> {{ $errors->first('price') }} </span>
+          @endif
+      </div>
+        <input class="inputField" placeholder="Price...." type="text" name="price" id="price" value="{{ old('price') }}"/>
     </div>
+
     <div>
-      <label>Brand</label>
-      <input type="text" name="brand" id="brand" value="{{ old('brand') }}"/>
-      @if($errors->has('brand'))
-          <span> {{ $errors->first('brand') }} </span>
+        <div class="headings">
+          <label class="heading">Brand</label>
+            @if($errors->has('brand'))
+              <span class="errors"> {{ $errors->first('brand') }} </span>
+            @endif
+        </div>
+      <input class="inputField" placeholder="Brand...." type="text" name="brand" id="brand" value="{{ old('brand') }}"/>
+    </div>
+
+    <div>
+      <div class="headings">
+        <label class="heading">Stock</label>
+        @if($errors->has('stock'))
+          <span class="errors"> {{ $errors->first('stock') }} </span>
       @endif
+      </div>
+      <input class="inputField" placeholder="Stock...." type="text" name="stock" id="stock" value="{{ old('stock') }}"/>
     </div>
-    <div>
-      <label>Stock</label>
-      <input type="integer" name="stock" id="stock" value="{{ old('stock') }}"/>
-      @if($errors->has('stock'))
-          <span> {{ $errors->first('stock') }} </span>
-      @endif
-    </div>
-    <button type="submit">Create</button>
+
+    <button class="createButton" type="submit">Create product</button>
+  </div>
 </form>
 @endsection

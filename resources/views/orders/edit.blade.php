@@ -19,26 +19,31 @@
 @endif --}}
 
 <form action="{{ route('orders.update', $order->id) }}" method="post">
-    @csrf
-    @method('PUT')
+  @csrf
+  @method('PUT')
+  <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
     <div>
-        <label>Order date</label>
+      <div class="headings">
+        <label class="heading">Order date</label>
+          @if($errors->has('order_date'))
+            <span class="errors"> {{ $errors->first('order_date') }} </span>
+          @endif
+      </div>
 
-        <input type="date" name="order_date" id="order_date" value="{{ old('order_date') ? : $order->order_date }}" />
-
-        @if($errors->has('order_date'))
-            <span> {{ $errors->first('order_date') }} </span>
-        @endif
+        <input class="inputField" type="date" name="order_date" id="order_date" value="{{ old('order_date') ? : $order->order_date }}" />
     </div>
+
     <div>
-        <label>Customer id</label>
+      <div class="headings">
+        <label class="heading">Customer id</label>
+          @if($errors->has('customer_id'))
+            <span class="errors"> {{ $errors->first('customer_id') }} </span>
+          @endif
+      </div>
 
-        <input type="text" name="customer_id" id="customer_id" value="{{ old('customer_id') ? : $order->customer_id }}"/>
-
-        @if($errors->has('customer_id'))
-            <span> {{ $errors->first('customer_id') }} </span>
-        @endif
+        <input class="inputField" type="text" name="customer_id" id="customer_id" value="{{ old('customer_id') ? : $order->customer_id }}" />
     </div>
-    <button type="submit">Edit</button>
+    <button class="editButton" type="submit">Edit order</button>
+  </div>
 </form>
 @endsection

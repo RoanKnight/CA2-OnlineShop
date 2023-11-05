@@ -8,19 +8,35 @@
 
 @section('content')
 
-<p class="row">First Name: {{ $customer->first_name }}</p>
-<p class="row">{{ $customer->last_name }}</p>
-<p class="row">{{ $customer->phone_number }}</p>
-<p class="row">{{ $customer->email }}</p>
+<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+  <div>
+    <label class="heading">First name</label>
+    <input class="inputField" value="{{ $customer->first_name }}" readonly/>
+  </div>
 
-<div>
-    <a href="{{ route('customers.edit', $customer->id) }}">Edit</a>
+  <div>
+    <label class="heading">Last name</label>
+    <input class="inputField" value="{{ $customer->last_name }}" readonly/>
+  </div>
+
+  <div>
+    <label class="heading">Phone number</label>
+    <input class="inputField" value="{{ $customer->phone_number }}" readonly/>
+  </div>
+
+  <div>
+    <label class="heading">Email</label>
+    <input class="inputField" value="{{ $customer->email }}" readonly/>
+  </div>
+
+  <a class="editButton" href="{{ route('customers.edit', $customer->id) }}">Edit</a>
 
     <form method="POST" action="{{ route('customers.destroy', $customer->id) }}">
         @csrf
         @method('DELETE')
-        <button type="submit">Delete</button>
+        <button class="deleteButton" type="submit">Delete</button>
     </form>
-</div>
+
+  </div>
 
 @endsection

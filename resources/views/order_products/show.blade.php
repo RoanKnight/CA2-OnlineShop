@@ -8,18 +8,30 @@
 
 @section('content')
 
-<p>{{ $order_product->order_id }}</p>
-<p>{{ $order_product->product_id }}</p>
-<p>{{ $order_product->discount_price }}</p>
+<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+  <div>
+    <label class="heading">Order id</label>
+    <input class="inputField" value="{{ $order_product->order_id }}" readonly/>
+  </div>
 
-<div>
-    <a href="{{ route('order_products.edit', $order_product->id) }}">Edit</a>
+  <div>
+    <label class="heading">Last name</label>
+    <input class="inputField" value="{{ $order_product->product_id }}" readonly/>
+  </div>
+
+  <div>
+    <label class="heading">Discount price</label>
+    <input class="inputField" value="{{ $order_product->discount_price }}" readonly/>
+  </div>
+
+  <a class="editButton" href="{{ route('order_products.edit', $order_product->id) }}">Edit</a>
 
     <form method="POST" action="{{ route('order_products.destroy', $order_product->id) }}">
         @csrf
         @method('DELETE')
-        <button type="submit">Delete</button>
+        <button class="deleteButton" type="submit">Delete</button>
     </form>
-</div>
+
+  </div>
 
 @endsection

@@ -1,7 +1,12 @@
 @extends('layouts.myApp')
 
+@section('header')
+<h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+    Create Order
+</h2>
+@endsection
+
 @section('content')
-<h3>Create Order</h3>
 
 {{-- @if ($errors->any())
     <div class="alert alert-danger">
@@ -14,21 +19,28 @@
 @endif --}}
 
 <form action="{{ route('orders.store') }}" method="post">
-    @csrf
+  @csrf
+  <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
     <div>
-        <label>Order date</label>
-        <input type="date" name="order_date" id="order_date" value="{{ old('order_date') }}"/>
-        @if($errors->has('order_date'))
-            <span> {{ $errors->first('order_date') }} </span>
-        @endif
+      <div class="headings">
+        <label class="heading">Order date</label>
+          @if($errors->has('order_date'))
+            <span class ="errors"> {{ $errors->first('order_date') }} </span>
+         @endif
+      </div>
+        <input class="inputField" placeholder="Order date...." type="date" name="order_date" id="order_date" value="{{ old('order_date') }}"/>
     </div>
+
     <div>
-        <label>Customer id</label>
-        <input type="text" name="customer_id" id="customer_id" value="{{ old('customer_id') }}"/>
-        @if($errors->has('customer_id'))
-            <span> {{ $errors->first('customer_id') }} </span>
-        @endif
+      <div class="headings">
+        <label class="heading">Customer_id</label>
+          @if($errors->has('customer_id'))
+            <span class="errors"> {{ $errors->first('customer_id') }} </span>
+          @endif
+      </div>
+        <input class="inputField" placeholder="Customer id...." type="text" name="customer_id" id="customer_id" value="{{ old('customer_id') }}"/>
     </div>
-    <button type="submit">Create</button>
+    <button class="createButton" type="submit">Create order</button>
+  </div>
 </form>
 @endsection

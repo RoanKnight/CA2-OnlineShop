@@ -12,7 +12,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::orderBy('order_date', 'desc')->paginate(10);
+        $orders = Order::orderBy('order_date', 'desc')->paginate(20);
 
         return view('orders.index', [
             'orders' => $orders 

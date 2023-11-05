@@ -4,7 +4,7 @@
 
 /* Index button styles */
 
-.CreateButton {
+.createButton {
   background-color: #3490dc;
   color: white;
   padding: 8px 12px;
@@ -13,12 +13,32 @@
   margin-left: 20px;
 }
 
-.Edit {
+.edit {
   color: blue;
 }
 
-.Edit:hover {
+.edit:hover {
   text-decoration: underline;
+}
+
+.editButton {
+  background-color: #ffc107;
+  color: #343a40;
+  text-decoration: none;
+  padding: 10px 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.deleteButton {
+  background-color: #dc3545;
+  color: white;  
+  text-decoration: none;
+  padding: 10px 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+  cursor: pointer;  
 }
 
 /* Index table styles */
@@ -54,4 +74,27 @@ table th {
   font-size: 14px;
   background-color: grey;
   color: white;
+}
+
+/*Create form styles*/
+
+.headings {
+  display: flex;
+  justify-content: space-between;
+}
+
+.heading {
+  font-weight: 500;
+}
+
+.errors {
+  color: red;
+}
+
+.inputField {
+  margin-top: 5px;
+  margin-bottom: 30px;
+  width: 100%;
+  border-radius: 10px;
+  border-color: rgb(100, 100, 100, 60%);
 }

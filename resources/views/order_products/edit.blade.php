@@ -21,33 +21,41 @@
 <form action="{{ route('order_products.update', $order_product->id) }}" method="post">
     @csrf
     @method('PUT')
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
     <div>
-        <label>Order id</label>
-
-        <input type="text" name="order_id" id="order_id" value="{{ old('order_id') ? : $order_product->order_id }}" />
-
+      <div class="headings">
+        <label class="heading">Order id</label>
         @if($errors->has('order_id'))
-            <span> {{ $errors->first('order_id') }} </span>
+            <span class="errors"> {{ $errors->first('order_id') }} </span>
         @endif
+      </div>
+
+        <input class="inputField" type="text" name="order_id" id="order_id" value="{{ old('order_id') ? : $order_product->order_id }}" />
     </div>
+
     <div>
-        <label>Product_id</label>
-
-        <input type="text" name="product_id" id="product_id" value="{{ old('product_id') ? : $order_product->product_id }}"/>
-
+      <div class="headings">
+        <label class="heading">Product id</label>
         @if($errors->has('product_id'))
-            <span> {{ $errors->first('product_id') }} </span>
+            <span class="errors"> {{ $errors->first('product_id') }} </span>
         @endif
+      </div>
+
+        <input class="inputField" type="text" name="product_id" id="product_id" value="{{ old('product_id') ? : $order_product->product_id }}" />
     </div>
+
     <div>
-      <label>Discount price (In €)</label>
+      <div class="headings">
+        <label class="heading">Discount price</label>
+        @if($errors->has('discount_price'))
+            <span class="errors"> {{ $errors->first('discount_price') }} </span>
+        @endif
+      </div>
 
-      <input type="text" name="discount_price" id="discount_price" value="{{ old('discount_price') ? : $order_product->discount_price }}" />
-
-      @if($errors->has('discount_price'))
-          <span> {{ $errors->first('discount_price') }} </span>
-      @endif
+        <input class="inputField" type="text" name="discount_price" id="discount_price" value="{{ old('discount_price') ? : $order_product->discount_price }}" />
     </div>
-    <button type="submit">Edit</button>
+
+    <button class="editButton" type="submit">Edit customer</button>
+  </div>
 </form>
 @endsection

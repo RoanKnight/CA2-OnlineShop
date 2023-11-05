@@ -19,35 +19,49 @@
 @endif --}}
 
 <form action="{{ route('customers.store') }}" method="post">
-    @csrf
+  @csrf
+  <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
     <div>
-        <label>First Name</label>
-        <input type="text" name="first_name" id="first_name" value="{{ old('first_name') }}"/>
+      <div class="headings">
+        <label class="heading">First Name</label>
         @if($errors->has('first_name'))
-            <span> {{ $errors->first('first_name') }} </span>
+            <span class ="errors"> {{ $errors->first('first_name') }} </span>
         @endif
+      </div>
+        <input class="inputField" placeholder="Customer's first name...." type="text" name="first_name" id="first_name" value="{{ old('first_name') }}"/>
     </div>
+
     <div>
-        <label>Last Name</label>
-        <input type="text" name="last_name" id="last_name" value="{{ old('last_name') }}"/>
-        @if($errors->has('last_name'))
-            <span> {{ $errors->first('last_name') }} </span>
-        @endif
+      <div class="headings">
+        <label class="heading">Last Name</label>
+          @if($errors->has('last_name'))
+            <span class="errors"> {{ $errors->first('last_name') }} </span>
+          @endif
+      </div>
+        <input class="inputField" placeholder="Customer's last name...." type="text" name="last_name" id="last_name" value="{{ old('last_name') }}"/>
     </div>
+
     <div>
-      <label>Phone Number</label>
-      <input type="text" name="phone_number" id="phone_number" value="{{ old('phone_number') }}"/>
-      @if($errors->has('phone_number'))
-          <span> {{ $errors->first('phone_number') }} </span>
+        <div class="headings">
+          <label class="heading">Phone Number</label>
+            @if($errors->has('phone_number'))
+              <span class="errors"> {{ $errors->first('phone_number') }} </span>
+            @endif
+        </div>
+      <input class="inputField" placeholder="Customer's phone number...." type="text" name="phone_number" id="phone_number" value="{{ old('phone_number') }}"/>
+    </div>
+
+    <div>
+      <div class="headings">
+        <label class="heading">Email</label>
+        @if($errors->has('email'))
+          <span class="errors"> {{ $errors->first('email') }} </span>
       @endif
+      </div>
+      <input class="inputField" placeholder="Customer's email...." type="email" name="email" id="email" value="{{ old('email') }}"/>
     </div>
-    <div>
-      <label>Email</label>
-      <input type="email" name="email" id="email" value="{{ old('email') }}"/>
-      @if($errors->has('email'))
-          <span> {{ $errors->first('email') }} </span>
-      @endif
-    </div>
-    <button type="submit">Create</button>
+
+    <button class="createButton" type="submit">Create customer</button>
+  </div>
 </form>
 @endsection

@@ -12,7 +12,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::orderBy('name', 'desc')->paginate(10);
+        $products = Product::orderBy('name', 'desc')->paginate(20);
 
         return view('products.index', [
             'products' => $products 
@@ -50,7 +50,7 @@ class ProductController extends Controller
           'price.regex' => 'The price is not in the correct format',
           'price.numeric' => 'The price must be numeric',
           'brand' => 'The brand is required',
-          'stock' => 'The stock is required',
+          'stock.integer' => 'The stock must be a number',
         ];
 
         $request->validate($rules, $messages);
@@ -108,7 +108,7 @@ class ProductController extends Controller
           'price.regex' => 'The price is not in the correct format',
           'price.numeric' => 'The price must be numeric',
           'brand' => 'The brand is required',
-          'stock' => 'The stock is required',
+          'stock.integer' => 'The stock must be a number',
         ];
 
         $request->validate($rules, $messages);

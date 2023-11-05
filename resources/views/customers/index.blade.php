@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
- <a class="CreateButton" href="{{route('customers.create')}}">Create new entry</a>
+ <a class="createButton" href="{{route('customers.create')}}">Create new entry</a>
 
  
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -49,7 +49,7 @@
               {{ $customer->email }}
             </td>
             <td class="px-6 py-4">
-                <a class="Edit" href="{{route('customers.show', $customer->id)}}" >Edit</a>
+                <a class="edit" href="{{route('customers.show', $customer->id)}}" >Edit</a>
             </td>
         </tr>
 
