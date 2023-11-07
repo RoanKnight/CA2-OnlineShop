@@ -13,6 +13,7 @@ class OrderSeeder extends Seeder
      */
     public function run(): void
     {
+        // Sample data for orders table
         $orders = [
           [
             'order_date' => '2023-04-12',
@@ -56,6 +57,7 @@ class OrderSeeder extends Seeder
           ],
         ];
 
+        // Insert the order records into the database
         Order::insert($orders);
     }
 }

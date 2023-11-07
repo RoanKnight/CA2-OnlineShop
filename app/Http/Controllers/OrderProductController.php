@@ -7,11 +7,18 @@ use App\Models\OrderProduct;
 
 class OrderProductController extends Controller
 {
+
+  // Users will be redirected to register page if they try to access any page associated with this controller while not logged in
+  public function __construct() {
+    $this->middleware('auth', ['except' => []]);
+  }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        // Retrieve and paginate order products in ascending order by order_id
         $order_products = OrderProduct::orderBy('order_id', 'asc')->paginate(30);
 
         return view('order_products.index', [
@@ -42,6 +49,7 @@ class OrderProductController extends Controller
             'discount_price' => 'numeric|regex:/^\d+(\.\d{1,2})?$/'
         ];
 
+        // Custom error messages for validation
         $messages = [
           'order_id' => 'The order id is required',
           'product_id' => 'The product id is required',
@@ -50,6 +58,7 @@ class OrderProductController extends Controller
 
         $request->validate($rules, $messages);
 
+        // Create a new order product with the validated data
         $order_product = new OrderProduct;
         $order_product->order_id = $request->order_id;
         $order_product->product_id = $request->product_id;
@@ -64,7 +73,7 @@ class OrderProductController extends Controller
      */
     public function show(string $id)
     {
-
+        // Retrieve and display the details of a specific order product
         $order_product = OrderProduct::findOrFail($id);
         return view('order_products.show', [
             'order_product' => $order_product
@@ -76,6 +85,7 @@ class OrderProductController extends Controller
      */
     public function edit(string $id)
     {
+        // Retrieve and display the edit form for a specific order product
         $order_product = OrderProduct::findOrFail($id);
         return view('order_products.edit', [
             'order_product' => $order_product
@@ -88,12 +98,14 @@ class OrderProductController extends Controller
     public function update(Request $request, string $id)
     {
         {
+          // Validation rules for updating an order product
           $rules = [
             'order_id' => 'required|integer',
             'product_id' => 'required|integer',
             'discount_price' => 'numeric|regex:/^\d+(\.\d{1,2})?$/'
         ];
 
+        // Custom error messages for validation
         $messages = [
           'order_id' => 'The order id is required',
           'product_id' => 'The product id is required',
@@ -102,6 +114,7 @@ class OrderProductController extends Controller
 
         $request->validate($rules, $messages);
 
+        // Update the order product with the validated data
         $order_product = OrderProduct::findOrFail($id);
         $order_product->order_id = $request->order_id;
         $order_product->product_id = $request->product_id;
@@ -118,6 +131,7 @@ class OrderProductController extends Controller
      */
     public function destroy(string $id)
     {
+        // Delete a specific order product
         $order_product = OrderProduct::findOrFail($id);
         $order_product->delete();
 

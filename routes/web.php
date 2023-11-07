@@ -18,19 +18,23 @@ use App\Http\Controllers\OrderProductController;
 |
 */
 
+// Display the welcome view when users access the root URL
 Route::get('/', function () {
     return view('welcome');
 });
 
+// Provide CRUD operations for the different tables
 Route::resource('customers', CustomerController::class);
 Route::resource('orders', OrderController::class);
 Route::resource('products', ProductController::class);
 Route::resource('order_products', OrderProductController::class);
 
+// Display the dashboard view to authenticated and verified users
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// Handle user profile editing and deletion for authenticated users
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

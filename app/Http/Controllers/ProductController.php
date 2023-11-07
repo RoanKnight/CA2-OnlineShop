@@ -7,13 +7,21 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
+
+  // Users will be redirected to register page if they try to access any page associated with this controller while not logged in
+  public function __construct() {
+    $this->middleware('auth', ['except' => []]);
+  }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        // Retrieve and paginate a list of products ordered by name in descending order
         $products = Product::orderBy('name', 'desc')->paginate(20);
 
+        // Return the view for listing products along with the data
         return view('products.index', [
             'products' => $products 
         ]);
@@ -24,6 +32,7 @@ class ProductController extends Controller
      */
     public function create()
     {
+        // Display the form for creating a new product
         return view('products.create');
     }
 
@@ -43,6 +52,7 @@ class ProductController extends Controller
           'stock' => "required|integer"
         ];
 
+        // Custom error messages for validation
         $messages = [
           'name' => 'The name is required',
           'name.min' => 'The name must be at least 5 characters',
@@ -55,6 +65,7 @@ class ProductController extends Controller
 
         $request->validate($rules, $messages);
 
+        // Create a new product instance and save it to the table
         $product = new Product;
         $product->name = $request->name;
         $product->price = $request->price;
@@ -62,6 +73,7 @@ class ProductController extends Controller
         $product->stock = $request->stock;
         $product->save();
 
+        // Redirect to the product index page with a success message
         return redirect()->route('products.index')->with('status', 'Created a new product');
     }
 
@@ -70,7 +82,7 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-
+        // Retrieve the details of a specific product by its ID
         $product = Product::findOrFail($id);
         return view('products.show', [
             'product' => $product
@@ -82,6 +94,7 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
+        // Display the form for editing the product along with its data
         $product = Product::findOrFail($id);
         return view('products.edit', [
             'product' => $product
@@ -94,6 +107,7 @@ class ProductController extends Controller
     public function update(Request $request, string $id)
     {
         {
+        // Validation rules for the updting a product
         $rules = [
           'name' => "required|unique:products,name,{$id}|string|min:5",
           'price' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
@@ -101,6 +115,7 @@ class ProductController extends Controller
           'stock' => "required|integer"
         ];
 
+        // Custom error messages for validation
         $messages = [
           'name.unique' => 'The name should be unique',
           'name.min' => 'The name must be at least 5 characters',
@@ -113,6 +128,7 @@ class ProductController extends Controller
 
         $request->validate($rules, $messages);
 
+        // Retrieve the product by its ID and update its information
         $product = Product::findOrFail($id);
         $product->name = $request->name;
         $product->price = $request->price;
@@ -120,6 +136,7 @@ class ProductController extends Controller
         $product->stock = $request->stock;
         $product->save();
 
+        // Redirect to the product index page with a success message
         return redirect()->route('products.index')->with('status', 'Updated product');
 
     }
@@ -130,9 +147,11 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
+        // Retrieve the product by its ID and delete it
         $product = Product::findOrFail($id);
         $product->delete();
 
+        // Redirect to the product index page with a success message
         return redirect()->route('products.index')->with('status', 'Product deleted successfully');
     }
 }

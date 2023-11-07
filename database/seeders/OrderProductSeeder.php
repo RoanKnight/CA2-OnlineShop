@@ -13,6 +13,7 @@ class OrderProductSeeder extends Seeder
      */
     public function run(): void
     {
+        // Sample data for order_product table
         $order_products = [
           [
             'order_id' => '1',
@@ -136,6 +137,7 @@ class OrderProductSeeder extends Seeder
           ],
         ];
 
+        // Insert the order_product records into the database
         OrderProduct::insert($order_products);
     }
 }

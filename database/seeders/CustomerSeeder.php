@@ -13,6 +13,7 @@ class CustomerSeeder extends Seeder
      */
     public function run(): void
     {
+        // Define an array of sample customer data
         $customers = [
           [
             'first_name' => 'John',
@@ -76,6 +77,7 @@ class CustomerSeeder extends Seeder
           ],
         ];
 
+        // Insert the sample customer data into the "customers" table
         Customer::insert($customers);
     }
 }

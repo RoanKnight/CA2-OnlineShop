@@ -7,11 +7,18 @@ use App\Models\Order;
 
 class OrderController extends Controller
 {
+
+  // Users will be redirected to register page if they try to access any page associated with this controller while not logged in
+  public function __construct() {
+    $this->middleware('auth', ['except' => []]);
+  }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        // Retrieve and paginate orders in descending order of order_date
         $orders = Order::orderBy('order_date', 'desc')->paginate(20);
 
         return view('orders.index', [
@@ -41,11 +48,13 @@ class OrderController extends Controller
             'customer_id' => 'required|integer'
         ];
 
+        // Custom error messages for validation
         $messages = [
           'order_date' => 'The order date is required',
           'customer_id' => 'The customer id is required',
         ];
 
+        // Create a new order with the validated data
         $request->validate($rules, $messages);
 
         $order = new Order;
@@ -62,6 +71,7 @@ class OrderController extends Controller
     public function show(string $id)
     {
 
+        // Retrieve and display the details of a specific order
         $order = Order::findOrFail($id);
         return view('orders.show', [
             'order' => $order
@@ -73,6 +83,7 @@ class OrderController extends Controller
      */
     public function edit(string $id)
     {
+        // Retrieve and display the edit form for a specific order
         $order = Order::findOrFail($id);
         return view('orders.edit', [
             'order' => $order
@@ -85,11 +96,13 @@ class OrderController extends Controller
     public function update(Request $request, string $id)
     {
         {
+        // Define validation rules for updating an order
         $rules = [
           'order_date' => "required|date_format:Y-m-d",
           'customer_id' => "required|integer"
         ];
 
+        // Custom error messages for validation
         $messages = [
           'order_date' => 'The order date is required',
           'customer_id' => 'The customer id is required',
@@ -97,6 +110,7 @@ class OrderController extends Controller
 
         $request->validate($rules, $messages);
 
+        // Update the order with the validated data
         $order = Order::findOrFail($id);
         $order->order_date = $request->order_date;
         $order->customer_id = $request->customer_id;
@@ -112,6 +126,7 @@ class OrderController extends Controller
      */
     public function destroy(string $id)
     {
+        // Delete a specific order
         $order = Order::findOrFail($id);
         $order->delete();
 

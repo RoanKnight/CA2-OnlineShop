@@ -13,6 +13,7 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
+        // Sample data for products table
         $products = [
           [
             'name' => 'iPhone 13 (128GB) - Midnight',
@@ -76,6 +77,7 @@ class ProductSeeder extends Seeder
           ],
         ];
 
+        // Insert the product records into the product table
         Product::insert($products);
     }
 }
