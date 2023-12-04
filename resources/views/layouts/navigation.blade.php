@@ -17,10 +17,19 @@
                     </x-nav-link>
                 </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                  <x-nav-link :href="route('customers.index')" :active="request()->routeIs('customers.index')">
-                      {{ __('Customers') }}
-                  </x-nav-link>
+                <div class="space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                  <!-- Checks if authenticated user has the admin role -->
+                  @if (auth()->user()->hasRole('admin'))
+                      <!-- If the user is an admin, customers tab will direct you to the admin's customer index page-->
+                      <x-nav-link :href="route('admin.customers.index')" :active="request()->routeIs('admin.customers.index')">
+                          {{ __('Customers') }}
+                      </x-nav-link>
+                  @else
+                      <!-- If the user isnt an admin (regular user), customers tab will direct you to the user's customer index page -->
+                      <x-nav-link :href="route('user.customers.index')" :active="request()->routeIs('user.customers.index')">
+                          {{ __('Customers') }}
+                      </x-nav-link>
+                  @endif
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
