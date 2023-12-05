@@ -73,13 +73,13 @@ class OrderController extends Controller
 
       // Associate products with the order and save discount prices
       $products = $request->input('products');
-      $discountPrices = $request->input('discount_prices', []);
+      $discount_prices = $request->input('discount_prices', []);
 
-      foreach ($products as $productId) {
-          $discountPrice = $discountPrices[$productId] ?? 0.00;
+      foreach ($products as $product_id) {
+          $discount_price = $discount_prices[$product_id] ?? 0.00;
 
-          $order->products()->attach($productId, [
-              'discount_price' => $discountPrice,
+          $order->products()->attach($product_id, [
+              'discount_price' => $discount_price,
           ]);
       }
 

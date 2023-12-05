@@ -18,7 +18,7 @@
     </div>
 @endif --}}
 
-<form action="{{ route('admin.products.store') }}" method="post">
+<form enctype="multipart/form-data" action="{{ route('admin.products.store') }}" method="post">
   @csrf
   <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
     <div>
@@ -59,6 +59,17 @@
       @endif
       </div>
       <input class="inputField" placeholder="Stock...." type="text" name="stock" id="stock" value="{{ old('stock') }}"/>
+    </div>
+
+    <div>
+      <div class="headings"><label class="heading">Product image</label></div>
+      <input
+      type="file"
+      name="product_image"
+      placeholder="Product image"
+      class="mt-3 image_field"
+      field="product_image"
+      />
     </div>
 
     <button class="createButton" type="submit">Create product</button>

@@ -29,6 +29,11 @@
     <input class="inputField" value="{{ $product->stock }}" readonly/>
   </div>
 
+  <div>
+    <label class="heading">Product image</label>
+    <img class="showImage" width="300" src={{ asset("storage/images/" . $product->product_image) }} />
+  </div>
+
   <a class="editButton" href="{{ route('admin.products.edit', $product->id) }}">Edit</a>
 
     <form method="POST" action="{{ route('admin.products.destroy', $product->id) }}">

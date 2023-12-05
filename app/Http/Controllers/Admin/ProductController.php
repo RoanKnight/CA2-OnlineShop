@@ -57,7 +57,8 @@ class ProductController extends Controller
           'name' => 'required|unique:products,name|string|min:5',
           'price' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
           'brand' => "required|string",
-          'stock' => "required|integer"
+          'stock' => "required|integer",
+          'product_image' => 'file|image'
         ];
 
         // Custom error messages for validation
@@ -68,10 +69,17 @@ class ProductController extends Controller
           'price.regex' => 'The price is not in the correct format',
           'price.numeric' => 'The price must be numeric',
           'brand' => 'The brand is required',
-          'stock.integer' => 'The stock must be a number',
+          'stock.integer' => 'The stock must be a number'
         ];
 
         $request->validate($rules, $messages);
+
+        $product_image = $request->file('product_image');
+        $extension = $product_image->getClientOriginalExtension();
+        // $filename = date('Y-m-d-His') . '_' .  str_replace(' ', '_', $request->name) . '.' . $extension;
+        $filename = date('Y-m-d-His') . '.' . $extension;
+
+        $product_image->storeAs('public/images', $filename);
 
         // Create a new product instance and save it to the table
         $product = new Product;
@@ -79,6 +87,7 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->brand = $request->brand;
         $product->stock = $request->stock;
+        $product->product_image = $filename;
         $product->save();
 
         // Redirect to the product index page with a success message
