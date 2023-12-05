@@ -18,7 +18,7 @@
     </div>
 @endif --}}
 
-<form action="{{ route('products.store') }}" method="post">
+<form action="{{ route('admin.products.store') }}" method="post">
   @csrf
   <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
     <div>

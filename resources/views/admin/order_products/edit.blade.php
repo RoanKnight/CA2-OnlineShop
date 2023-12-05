@@ -18,7 +18,7 @@
     </div>
 @endif --}}
 
-<form action="{{ route('order_products.update', $order_product->id) }}" method="post">
+<form action="{{ route('admin.order_products.update', $order_product->id) }}" method="post">
     @csrf
     @method('PUT')
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -55,7 +55,7 @@
         <input class="inputField" type="text" name="discount_price" id="discount_price" value="{{ old('discount_price') ? : $order_product->discount_price }}" />
     </div>
 
-    <button class="editButton" type="submit">Edit customer</button>
+    <button class="editButton" type="submit">Edit order_product</button>
   </div>
 </form>
 @endsection

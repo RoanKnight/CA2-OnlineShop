@@ -29,9 +29,9 @@
     <input class="inputField" value="{{ $product->stock }}" readonly/>
   </div>
 
-  <a class="editButton" href="{{ route('products.edit', $product->id) }}">Edit</a>
+  <a class="editButton" href="{{ route('admin.products.edit', $product->id) }}">Edit</a>
 
-    <form method="POST" action="{{ route('products.destroy', $product->id) }}">
+    <form method="POST" action="{{ route('admin.products.destroy', $product->id) }}">
         @csrf
         @method('DELETE')
         <button class="deleteButton" type="submit">Delete</button>

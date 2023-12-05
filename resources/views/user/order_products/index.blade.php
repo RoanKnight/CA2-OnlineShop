@@ -4,12 +4,12 @@
 
 @section('header')
 <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-    Customers
+    Order_products
 </h2>
 @endsection
 
 @section('content')
- <a class="createButton" href="{{route('customers.create')}}">Create new entry</a>
+ <a class="CreateButton" href="{{route('user.order_products.create')}}">Create new entry</a>
 
  
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -17,16 +17,13 @@
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
-                    First Name
+                    Order_id
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Last Name
+                    Product_id
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Phone number
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Email
+                    Discount price
                 </th>
                 <th scope="col" class="px-6 py-3">
                   Action
@@ -34,27 +31,24 @@
             </tr>
         </thead>
 
-        @forelse($customers as $customer)
+        @forelse($order_products as $order_product)
         <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
             <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                {{ $customer->first_name }}
+                {{ $order_product->order_id }}
             </td>
             <td class="px-6 py-4">
-                {{ $customer->last_name }}
+                {{ $order_product->product_id }}
             </td>
             <td class="px-6 py-4">
-                {{ $customer->phone_number }}
+                {{ $order_product->discount_price }}
             </td>
             <td class="px-6 py-4">
-              {{ $customer->email }}
-            </td>
-            <td class="px-6 py-4">
-                <a class="edit" href="{{route('customers.show', $customer->id)}}" >Edit</a>
-            </td>
+              <a class="Edit" href="{{route('user.order_products.show', $order_product->id)}}" >View</a>
+          </td>
         </tr>
 
     @empty
-        <h4>No Customers found!</h4>
+        <h4>No Order_products found!</h4>
     @endforelse
     </table>
 </div>

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Order;
-use App\Models\Product;
 use Auth;
 
 class CustomerController extends Controller
@@ -42,10 +41,8 @@ class CustomerController extends Controller
         Auth::user()->authorizeRoles('admin');
 
         $orders = Order::all();
-        $products = Product::all();
 
-        return view('admin.customers.create')->with('orders', $orders)
-            ->with('products', $products);
+        return view('admin.customers.create')->with('orders', $orders);
     }
 
     /**
@@ -55,10 +52,10 @@ class CustomerController extends Controller
     {
         // Validation rules for the incoming request data
         $rules = [
-            'first_name' => 'required|string|min:2|max:150',
-            'last_name' => 'required|string|min:2|max:150',
-            'phone_number' => "required|unique:customers,phone_number|regex:/^08[35679]\d{7}$/",
-            'email' => 'required|email|unique:customers,email|min:5|max:1000',
+          'first_name' => 'required|string|min:2|max:150',
+          'last_name' => 'required|string|min:2|max:150',
+          'phone_number' => "required|unique:customers,phone_number|regex:/^08[35679]\d{7}$/",
+          'email' => 'required|email|unique:customers,email|min:5|max:1000',
         ];
 
         // Custom error messages for validation rules

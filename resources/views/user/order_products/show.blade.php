@@ -23,15 +23,6 @@
     <label class="heading">Discount price</label>
     <input class="inputField" value="{{ $order_product->discount_price }}" readonly/>
   </div>
-
-  <a class="editButton" href="{{ route('order_products.edit', $order_product->id) }}">Edit</a>
-
-    <form method="POST" action="{{ route('order_products.destroy', $order_product->id) }}">
-        @csrf
-        @method('DELETE')
-        <button class="deleteButton" type="submit">Delete</button>
-    </form>
-
   </div>
 
 @endsection

@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
- <a class="CreateButton" href="{{route('products.create')}}">Create new entry</a>
+ <a class="CreateButton" href="{{route('user.products.create')}}">Create new entry</a>
 
  
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -49,7 +49,7 @@
               {{ $product->stock }}
             </td>
             <td class="px-6 py-4">
-                <a class="Edit" href="{{route('products.show', $product->id)}}" >Edit</a>
+                <a class="Edit" href="{{route('user.products.show', $product->id)}}" >View</a>
             </td>
         </tr>
 

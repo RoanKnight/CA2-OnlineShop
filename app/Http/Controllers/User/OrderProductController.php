@@ -4,9 +4,9 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Customer;
+use App\Models\OrderProduct;
 
-class CustomerController extends Controller
+class OrderController extends Controller
 {
 
   // Users will be redirected to register page if they try to access any page associated with this controller while not logged in
@@ -19,8 +19,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = Customer::paginate(10);
-        return view('user.customers.index')->with('customers', $customers);
+        $order_products = Order_product::paginate(10);
+        return view('user.order_products.index')->with('order_products', $order_products);
     }
 
     /**
@@ -29,8 +29,8 @@ class CustomerController extends Controller
     public function show(string $id)
     {
 
-        // Find a customer by their ID, and then display the 'customers.show' view
-        $customer = Customer::findOrFail($id);
-        return view('user.customers.show')->with('customer', $customer);
+        // Find a order by their ID, and then display the 'orders.show' view
+        $order_product = Order_product::findOrFail($id);
+        return view('user.order_products.show')->with('order_product', $order_product);
     }
 }

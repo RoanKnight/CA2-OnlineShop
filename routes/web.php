@@ -12,6 +12,15 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\CustomerController as AdminCustomerController;
 use App\Http\Controllers\User\CustomerController as UserCustomerController;
 
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\User\OrderController as UserOrderController;
+
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\User\ProductController as UserProductController;
+
+use App\Http\Controllers\Admin\OrderProductController as AdminOrderProductController;
+use App\Http\Controllers\User\OrderProductController as UserOrderProductController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -54,5 +63,26 @@ Route::resource('/customers', UserCustomerController::class)
     ->only(['index', 'show']);
 
 Route::resource('/admin/customers', AdminCustomerController::class)->middleware(['auth', 'role:admin'])->names('admin.customers');
+
+Route::resource('/orders', UserOrderController::class)
+    ->middleware(['auth', 'role:user,admin'])
+    ->names('user.orders')
+    ->only(['index', 'show']);
+
+Route::resource('/admin/orders', AdminOrderController::class)->middleware(['auth', 'role:admin'])->names('admin.orders');
+
+Route::resource('/products', UserOrderProductController::class)
+    ->middleware(['auth', 'role:user,admin'])
+    ->names('user.products')
+    ->only(['index', 'show']);
+
+Route::resource('/admin/products', AdminProductController::class)->middleware(['auth', 'role:admin'])->names('admin.products');
+
+Route::resource('/order_products', UserOrderProductController::class)
+    ->middleware(['auth', 'role:user,admin'])
+    ->names('user.order_products')
+    ->only(['index', 'show']);
+
+Route::resource('/admin/order_products', AdminOrderProductController::class)->middleware(['auth', 'role:admin'])->names('admin.order_products');
 
 require __DIR__.'/auth.php';

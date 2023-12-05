@@ -29,9 +29,9 @@
     <input class="inputField" value="{{ $customer->email }}" readonly/>
   </div>
 
-  <a class="editButton" href="{{ route('customers.edit', $customer->id) }}">Edit</a>
+  <a class="editButton" href="{{ route('admin.customers.edit', $customer->id) }}">Edit</a>
 
-    <form method="POST" action="{{ route('customers.destroy', $customer->id) }}">
+    <form method="POST" action="{{ route('admin.customers.destroy', $customer->id) }}">
         @csrf
         @method('DELETE')
         <button class="deleteButton" type="submit">Delete</button>

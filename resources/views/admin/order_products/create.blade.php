@@ -18,7 +18,7 @@
     </div>
 @endif --}}
 
-<form action="{{ route('order_products.store') }}" method="post">
+<form action="{{ route('admin.order_products.store') }}" method="post">
   @csrf
   <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
     <div>
@@ -51,7 +51,7 @@
       <input class="inputField" placeholder="Discount price...." type="text" name="discount_price" id="discount_price" value="{{ old('discount_price') }}"/>
     </div>
 
-    <button class="createButton" type="submit">Create customer</button>
+    <button class="createButton" type="submit">Create order_product</button>
   </div>
 </form>
 @endsection

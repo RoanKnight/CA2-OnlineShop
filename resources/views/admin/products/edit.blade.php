@@ -18,7 +18,7 @@
     </div>
 @endif --}}
 
-<form action="{{ route('products.update', $product->id) }}" method="post">
+<form action="{{ route('admin.products.update', $product->id) }}" method="post">
     @csrf
     @method('PUT')
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

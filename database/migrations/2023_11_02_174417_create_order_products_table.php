@@ -13,9 +13,14 @@ return new class extends Migration
     {
         Schema::create('order_products', function (Blueprint $table) {
             $table->id();
-            $table->BigInteger('order_id');
-            $table->BigInteger('product_id');
-            $table->string('discount_price');
+
+            $table->foreignId('order_id');
+            $table->foreignId('product_id');
+
+            $table->foreign('order_id')->references('id')->on('orders')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
+
+            $table->decimal('discount_price')->default(0.00);
             $table->timestamps();
         });
     }

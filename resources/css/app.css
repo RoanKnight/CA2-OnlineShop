@@ -5,12 +5,17 @@
 /* Index button styles */
 
 .createButton {
+  margin-left: 15px;
   background-color: #3490dc;
   color: white;
   padding: 8px 12px;
   text-decoration: none;
-  border-radius: 4px;
-  margin-left: 20px;
+  border-radius: 5px;
+}
+
+.createButton:hover {
+  background-color: #1e74e6;
+  transition: ease-in 200ms;
 }
 
 .edit {
@@ -97,4 +102,18 @@ table th {
   width: 100%;
   border-radius: 10px;
   border-color: rgb(100, 100, 100, 60%);
+}
+
+.productList {
+  background-color: white;
+  padding: 10px;
+  border: solid;
+  border-width: 1px;
+  border-radius: 10px;
+  border-color: rgb(100, 100, 100, 60%);
+  margin-bottom: 30px;
+}
+
+.productItem {
+  margin: 10px 0px;
 }

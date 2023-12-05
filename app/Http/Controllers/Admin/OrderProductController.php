@@ -1,9 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\OrderProduct;
+use App\Models\Product;
+use App\Models\Order;
+use Auth;
 
 class OrderProductController extends Controller
 {
@@ -18,12 +22,12 @@ class OrderProductController extends Controller
      */
     public function index()
     {
-        // Retrieve and paginate order products in ascending order by order_id
-        $order_products = OrderProduct::orderBy('order_id', 'asc')->paginate(30);
+      // Gets all order_products
+      $order_products = OrderProduct::all();
 
-        return view('order_products.index', [
-            'order_products' => $order_products 
-        ]);
+      return view('admin.order_products.index', [
+          'order_products' => $order_products 
+      ]);
     }
 
     /**
@@ -31,7 +35,13 @@ class OrderProductController extends Controller
      */
     public function create()
     {
-        return view('order_products.create');
+      Auth::user()->authorizeRoles('admin');
+
+      $orders = Order::all();
+      $products = Product::all();
+
+      return view('admin.order_products.create')->with('orders', $orders)
+          ->with('products', $products);
     }
 
     /**
@@ -65,7 +75,7 @@ class OrderProductController extends Controller
         $order_product->discount_price = $request->discount_price;
         $order_product->save();
 
-        return redirect()->route('order_products.index')->with('status', 'Created a new order_product');
+        return redirect()->route('admin.order_products.index')->with('status', 'Created a new order_product');
     }
 
     /**
@@ -75,7 +85,7 @@ class OrderProductController extends Controller
     {
         // Retrieve and display the details of a specific order product
         $order_product = OrderProduct::findOrFail($id);
-        return view('order_products.show', [
+        return view('admin.order_products.show', [
             'order_product' => $order_product
         ]);
     }
@@ -87,7 +97,7 @@ class OrderProductController extends Controller
     {
         // Retrieve and display the edit form for a specific order product
         $order_product = OrderProduct::findOrFail($id);
-        return view('order_products.edit', [
+        return view('admin.order_products.edit', [
             'order_product' => $order_product
         ]);
     }
@@ -121,7 +131,7 @@ class OrderProductController extends Controller
         $order_product->discount_price = $request->discount_price;
         $order_product->save();
 
-        return redirect()->route('order_products.index')->with('status', 'Updated order_product');
+        return redirect()->route('admin.order_products.index')->with('status', 'Updated order_product');
 
     }
     }
@@ -135,6 +145,6 @@ class OrderProductController extends Controller
         $order_product = OrderProduct::findOrFail($id);
         $order_product->delete();
 
-        return redirect()->route('order_products.index')->with('status', 'Order_product deleted successfully');
+        return redirect()->route('admin.order_products.index')->with('status', 'Order_product deleted successfully');
     }
 }
