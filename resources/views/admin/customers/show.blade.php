@@ -29,6 +29,17 @@
     <input class="inputField" value="{{ $customer->email }}" readonly/>
   </div>
 
+  <div>
+    <label class="heading">Orders</label>
+    <div class="productList">
+    <ul>
+      @foreach($customer->orders as $order)
+        <li class="productItem">{{$order->id}} - {{$order->order_date}}</li>
+      @endforeach
+    </ul>
+    </div>
+  </div>
+
   <a class="editButton" href="{{ route('admin.customers.edit', $customer->id) }}">Edit</a>
 
     <form method="POST" action="{{ route('admin.customers.destroy', $customer->id) }}">

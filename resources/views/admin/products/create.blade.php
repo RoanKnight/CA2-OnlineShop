@@ -62,13 +62,18 @@
     </div>
 
     <div>
-      <div class="headings"><label class="heading">Product image</label></div>
+      <div class="headings"><label class="heading">Product image</label>
+        @if($errors->has('product_image'))
+          <span class="errors">{{ $errors->first('product_image') }}<span>
+        @endif
+      </div>
       <input
       type="file"
       name="product_image"
       placeholder="Product image"
       class="mt-3 image_field"
       field="product_image"
+      value="{{ old('product_image') }}"
       />
     </div>
 

@@ -76,11 +76,15 @@ class OrderController extends Controller
       $discount_prices = $request->input('discount_prices', []);
 
       foreach ($products as $product_id) {
-          $discount_price = $discount_prices[$product_id] ?? 0.00;
+        
+        $product = Product::find($product_id);
+        $discount_price = isset($discount_prices[$product_id])
+        ? $discount_prices[$product_id]
+        : ($product ? $product->price: 0.00);
 
-          $order->products()->attach($product_id, [
-              'discount_price' => $discount_price,
-          ]);
+        $order->products()->attach($product_id, [
+            'discount_price' => $discount_price,
+        ]);
       }
 
       return redirect()->route('admin.orders.index')->with('status', 'Created a new order');
@@ -137,6 +141,22 @@ class OrderController extends Controller
         $order->order_date = $request->order_date;
         $order->customer_id = $request->customer_id;
         $order->save();
+
+        // Associate products with the order and save discount prices
+      $products = $request->input('products');
+      $discount_prices = $request->input('discount_prices', []);
+
+      foreach ($products as $product_id) {
+        
+        $product = Product::find($product_id);
+        $discount_price = isset($discount_prices[$product_id])
+        ? $discount_prices[$product_id]
+        : ($product ? $product->price: 0.00);
+
+        $order->products()->attach($product_id, [
+            'discount_price' => $discount_price,
+        ]);
+      }
 
         // Sync products to the order
         $order->products()->sync($request->input('products'));

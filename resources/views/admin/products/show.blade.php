@@ -31,7 +31,9 @@
 
   <div>
     <label class="heading">Product image</label>
-    <img class="showImage" width="300" src={{ asset("storage/images/" . $product->product_image) }} />
+    <div class="productImage">
+      <img class="showImage" width="300" src={{ asset("storage/images/" . $product->product_image) }} />
+    </div>
   </div>
 
   <a class="editButton" href="{{ route('admin.products.edit', $product->id) }}">Edit</a>

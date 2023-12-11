@@ -43,6 +43,18 @@
 
         <input class="inputField" type="text" name="customer_id" id="customer_id" value="{{ old('customer_id') ? : $order->customer_id }}" />
     </div>
+
+    <div class="productList">
+      @foreach($products as $product)
+          <div class="productItem">
+              <input type="checkbox" name="products[]" value="{{ $product->id }}"
+                     id="product_{{ $product->id }}">
+              <label for="product_{{ $product->id }}">{{ $product->name }}</label>
+              <input type="text" name="discount_prices[{{ $product->id }}]" placeholder="Discount Price (Optional)" value="{{ old('discount_prices.' . $product->id) }}">
+          </div>
+      @endforeach
+      </div>
+      
     <button class="editButton" type="submit">Edit order</button>
   </div>
 </form>

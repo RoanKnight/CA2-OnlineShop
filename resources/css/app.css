@@ -125,3 +125,13 @@ table th {
 .showImage {
   margin: 20px 0px;
 }
+
+.productImage {
+  background-color: white;
+  padding: 10px;
+  border: solid;
+  border-width: 1px;
+  border-radius: 10px;
+  border-color: rgb(100, 100, 100, 60%);
+  margin-bottom: 30px;
+}

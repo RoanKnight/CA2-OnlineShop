@@ -58,7 +58,7 @@ class ProductController extends Controller
           'price' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
           'brand' => "required|string",
           'stock' => "required|integer",
-          'product_image' => 'file|image'
+          'product_image' => 'required|file|image'
         ];
 
         // Custom error messages for validation
@@ -129,7 +129,8 @@ class ProductController extends Controller
           'name' => "required|unique:products,name,{$id}|string|min:5",
           'price' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
           'brand' => "required|string",
-          'stock' => "required|integer"
+          'stock' => "required|integer",
+          'product_image' => 'required|file|image'
         ];
 
         // Custom error messages for validation
@@ -151,7 +152,10 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->brand = $request->brand;
         $product->stock = $request->stock;
+        $product->product_image = $filename;
         $product->save();
+
+        $product->orders()->sync($request->input('orders'));
 
         // Redirect to the product index page with a success message
         return redirect()->route('admin.products.index')->with('status', 'Updated product');

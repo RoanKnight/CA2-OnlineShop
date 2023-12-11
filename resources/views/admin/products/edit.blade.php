@@ -65,6 +65,30 @@
 
         <input class="inputField" type="text" name="stock" id="stock" value="{{ old('stock') ? : $product->stock }}" />
     </div>
+
+    <div>
+      <div class="headings">
+        <label class="heading">Product image</label>
+        @if($errors->has('product_image'))
+          <span class="errors">{{ $errors->first('product_image') }}</span>
+        @endif
+      </div>
+      
+      <div class="productImage">
+        <img class="showImage" width="300" src={{ asset("storage/images/" . $product->product_image) }} />
+      </div>
+
+      <input
+        id="product_image"
+        type="file"
+        name="product_image"
+        placeholder="Product image"
+        class="mt-3 image_field"
+        field="product_image"
+        value="{{ old('product_image') ? : $product->product_image }}"
+      />
+    </div>
+
     <button class="editButton" type="submit">Edit product</button>
   </div>
 </form>
