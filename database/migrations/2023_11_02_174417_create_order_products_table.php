@@ -17,8 +17,8 @@ return new class extends Migration
             $table->foreignId('order_id');
             $table->foreignId('product_id');
 
-            $table->foreign('order_id')->references('id')->on('orders')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('order_id')->references('id')->on('orders')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('restrict');
 
             $table->decimal('discount_price');
             $table->timestamps();

@@ -29,6 +29,13 @@
     <input class="inputField" value="{{ $product->stock }}" readonly/>
   </div>
 
+  <div>
+    <label class="heading">Product image</label>
+    <div class="productImage">
+      <img class="showImage" width="300" src={{ asset("storage/images/" . $product->product_image) }} />
+    </div>
+  </div>
+
   </div>
 
 @endsection

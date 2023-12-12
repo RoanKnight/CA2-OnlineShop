@@ -16,7 +16,7 @@ return new class extends Migration
             $table->date('order_date');
             $table->foreignId('customer_id');
 
-            $table->foreign('customer_id')->references('id')->on('customers')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('customer_id')->references('id')->on('customers')->onUpdate('cascade')->onDelete('restrict');
 
             $table->timestamps();
         });

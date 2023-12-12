@@ -9,7 +9,6 @@
 @endsection
 
 @section('content')
- <a class="CreateButton" href="{{route('user.order_products.create')}}">Create new entry</a>
 
  
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">

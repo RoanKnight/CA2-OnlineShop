@@ -40,10 +40,10 @@
                       {{ __('Order_products') }}
                     </x-nav-link>
                 @else
-                    <!-- If the user isnt an admin (regular user), customers tab will direct you to the user's customer index page -->
+                    {{-- <!-- If the user isnt an admin (regular user), customers tab will direct you to the user's customer index page -->
                     <x-nav-link :href="route('user.customers.index')" :active="request()->routeIs('user.customers.index')">
                         {{ __('Customers') }}
-                    </x-nav-link>
+                    </x-nav-link> --}}
 
                     <!-- If the user isnt an admin (regular user), orders tab will direct you to the user's order index page -->
                     <x-nav-link :href="route('user.orders.index')" :active="request()->routeIs('user.orders.index')">

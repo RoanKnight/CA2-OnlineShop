@@ -16,8 +16,8 @@ class Customer extends Model
       'email'
   ];
 
-  /**
-     * Define the relationship: a customer can have many orders.
+    /**
+     * A customer can have many orders.
      */
     public function orders()
     {

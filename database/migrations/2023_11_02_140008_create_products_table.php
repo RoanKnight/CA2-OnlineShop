@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('price');
             $table->string('brand');
             $table->string('stock');
+            $table->boolean('deleted')->false;
             $table->timestamps();
         });
     }

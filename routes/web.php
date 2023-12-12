@@ -10,7 +10,7 @@ use App\Http\Controllers\OrderProductController;
 use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\Admin\CustomerController as AdminCustomerController;
-use App\Http\Controllers\User\CustomerController as UserCustomerController;
+// use App\Http\Controllers\User\CustomerController as UserCustomerController;
 
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\User\OrderController as UserOrderController;
@@ -43,7 +43,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Provide CRUD operations for the different tables
-Route::resource('customers', CustomerController::class);
+// Route::resource('customers', CustomerController::class);
 Route::resource('orders', OrderController::class);
 Route::resource('products', ProductController::class);
 Route::resource('order_products', OrderProductController::class);
@@ -57,10 +57,10 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 
-Route::resource('/customers', UserCustomerController::class)
-    ->middleware(['auth', 'role:user,admin'])
-    ->names('user.customers')
-    ->only(['index', 'show']);
+// Route::resource('/customers', UserCustomerController::class)
+//     ->middleware(['auth', 'role:user,admin'])
+//     ->names('user.customers')
+//     ->only(['index', 'show']);
 
 Route::resource('/admin/customers', AdminCustomerController::class)->middleware(['auth', 'role:admin'])->names('admin.customers');
 
@@ -71,7 +71,7 @@ Route::resource('/orders', UserOrderController::class)
 
 Route::resource('/admin/orders', AdminOrderController::class)->middleware(['auth', 'role:admin'])->names('admin.orders');
 
-Route::resource('/products', UserOrderProductController::class)
+Route::resource('/products', UserProductController::class)
     ->middleware(['auth', 'role:user,admin'])
     ->names('user.products')
     ->only(['index', 'show']);

@@ -130,7 +130,7 @@ class ProductController extends Controller
           'price' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
           'brand' => "required|string",
           'stock' => "required|integer",
-          'product_image' => 'required|file|image'
+          'product_image' => 'file|image'
         ];
 
         // Custom error messages for validation
@@ -146,13 +146,29 @@ class ProductController extends Controller
 
         $request->validate($rules, $messages);
 
-        // Retrieve the product by its ID and update its information
         $product = Product::findOrFail($id);
+
+
+        if($request->hasFile('product_image')){
+          $product_image = $request->file('product_image');
+        $extension = $product_image->getClientOriginalExtension();
+        // $filename = date('Y-m-d-His') . '_' .  str_replace(' ', '_', $request->name) . '.' . $extension;
+        $filename = date('Y-m-d-His') . '.' . $extension;
+
+        $product_image->storeAs('public/images', $filename);
+
+        $product->product_image = $filename;
+
+        }
+
+        
+
+
+        // Retrieve the product by its ID and update its information
         $product->name = $request->name;
         $product->price = $request->price;
         $product->brand = $request->brand;
         $product->stock = $request->stock;
-        $product->product_image = $filename;
         $product->save();
 
         $product->orders()->sync($request->input('orders'));
@@ -170,7 +186,11 @@ class ProductController extends Controller
     {
         // Retrieve the product by its ID and delete it
         $product = Product::findOrFail($id);
+        // $product->orders->detach();
         $product->delete();
+
+        // $product->deleted = true;
+        // $product->save();
 
         // Redirect to the product index page with a success message
         return redirect()->route('admin.products.index')->with('status', 'Product deleted successfully');

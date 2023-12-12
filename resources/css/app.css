@@ -55,7 +55,7 @@ header {
 table {
   border-collapse: collapse;
   width: 100%;
-  margin-top: 20px;
+  margin: 20px 0px
 }
 
 table td, table th {

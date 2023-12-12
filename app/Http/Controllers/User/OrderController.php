@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use Auth;
 
 class OrderController extends Controller
 {
@@ -19,7 +20,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::paginate(10);
+        $orders = Order::where('customer_id', '=', Auth::id())->get();
         return view('user.orders.index')->with('orders', $orders);
     }
 
@@ -30,7 +31,7 @@ class OrderController extends Controller
     {
 
         // Find a order by their ID, and then display the 'orders.show' view
-        $order = Orders::findOrFail($id);
+        $order = Order::findOrFail($id);
         return view('user.orders.show')->with('order', $order);
     }
 }

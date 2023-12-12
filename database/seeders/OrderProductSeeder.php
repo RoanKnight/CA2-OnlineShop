@@ -20,17 +20,17 @@ class OrderProductSeeder extends Seeder
           [
             'order_id' => '1',
             'product_id' => '1',
-            'discount_price' => '12.99',
+            'discount_price' => '550.99',
           ],
           [
             'order_id' => '1',
             'product_id' => '5',
-            'discount_price' => '708.99',
+            'discount_price' => '16.99',
           ],
           [
             'order_id' => '1',
             'product_id' => '9',
-            'discount_price' => '17.99',
+            'discount_price' => '12.99',
           ],
           [
             'order_id' => '2',
@@ -40,17 +40,17 @@ class OrderProductSeeder extends Seeder
           [
             'order_id' => '2',
             'product_id' => '3',
-            'discount_price' => '38.99',
+            'discount_price' => '200.99',
           ],
           [
             'order_id' => '2',
             'product_id' => '4',
-            'discount_price' => '60.00',
+            'discount_price' => '790.00',
           ],
           [
             'order_id' => '3',
             'product_id' => '7',
-            'discount_price' => '130.99',
+            'discount_price' => '36.99',
           ],
           [
             'order_id' => '3',
@@ -60,47 +60,47 @@ class OrderProductSeeder extends Seeder
           [
             'order_id' => '4',
             'product_id' => '3',
-            'discount_price' => '38.99',
+            'discount_price' => '200.99',
           ],
           [
             'order_id' => '5',
             'product_id' => '1',
-            'discount_price' => '12.99',
+            'discount_price' => '550.99',
           ],
           [
             'order_id' => '5',
             'product_id' => '5',
-            'discount_price' => '708.99',
+            'discount_price' => '16.99',
           ],
           [
             'order_id' => '5',
             'product_id' => '9',
-            'discount_price' => '17.99',
+            'discount_price' => '12.99',
           ],
           [
             'order_id' => '6',
             'product_id' => '10',
-            'discount_price' => '28.99',
+            'discount_price' => '199.00',
           ],
           [
             'order_id' => '6',
             'product_id' => '3',
-            'discount_price' => '38.99',
+            'discount_price' => '200.99',
           ],
           [
             'order_id' => '6',
             'product_id' => '6',
-            'discount_price' => '390.99',
+            'discount_price' => '33.99',
           ],
           [
             'order_id' => '7',
             'product_id' => '1',
-            'discount_price' => '12.99',
+            'discount_price' => '550.99',
           ],
           [
             'order_id' => '7',
             'product_id' => '7',
-            'discount_price' => '130.99',
+            'discount_price' => '36.99',
           ],
           [
             'order_id' => '8',
@@ -110,27 +110,27 @@ class OrderProductSeeder extends Seeder
           [
             'order_id' => '8',
             'product_id' => '10',
-            'discount_price' => '28.99',
+            'discount_price' => '199.00',
           ],
           [
             'order_id' => '9',
             'product_id' => '3',
-            'discount_price' => '38.99',
+            'discount_price' => '200.99',
           ],
           [
             'order_id' => '9',
             'product_id' => '5',
-            'discount_price' => '708.99',
+            'discount_price' => '16.99',
           ],
           [
             'order_id' => '9',
             'product_id' => '7',
-            'discount_price' => '130.99',
+            'discount_price' => '36.99',
           ],
           [
             'order_id' => '10',
             'product_id' => '4',
-            'discount_price' => '60.00',
+            'discount_price' => '790.00',
           ],
           [
             'order_id' => '10',

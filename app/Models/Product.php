@@ -18,7 +18,7 @@ class Product extends Model
   ];
 
   /**
-   * Define the relationship: a product can be in many orders through the OrderProduct pivot table.
+   * A product can be in many orders through the OrderProduct pivot table.
    */
   public function orders()
   {

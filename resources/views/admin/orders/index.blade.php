@@ -20,7 +20,7 @@
                     Order date
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Customer id
+                    Customer name
                 </th>
                 <th scope="col" class="px-6 py-3">
                   Action
@@ -34,10 +34,10 @@
                 {{ $order->order_date }}
             </td>
             <td class="px-6 py-4">
-                {{ $order->customer_id }}
+                {{ $order->customer->first_name }} {{ $order->customer->last_name }}
             </td>
             <td class="px-6 py-4">
-                <a class="Edit" href="{{route('admin.orders.show', $order->id)}}" >Edit</a>
+                <a class="edit" href="{{route('admin.orders.show', $order->id)}}" >Edit</a>
             </td>
         </tr>
 
