@@ -43,7 +43,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Provide CRUD operations for the different tables
-// Route::resource('customers', CustomerController::class);
+Route::resource('customers', CustomerController::class);
 Route::resource('orders', OrderController::class);
 Route::resource('products', ProductController::class);
 Route::resource('order_products', OrderProductController::class);
@@ -78,10 +78,10 @@ Route::resource('/products', UserProductController::class)
 
 Route::resource('/admin/products', AdminProductController::class)->middleware(['auth', 'role:admin'])->names('admin.products');
 
-Route::resource('/order_products', UserOrderProductController::class)
-    ->middleware(['auth', 'role:user,admin'])
-    ->names('user.order_products')
-    ->only(['index', 'show']);
+// Route::resource('/order_products', UserOrderProductController::class)
+//     ->middleware(['auth', 'role:user,admin'])
+//     ->names('user.order_products')
+//     ->only(['index', 'show']);
 
 Route::resource('/admin/order_products', AdminOrderProductController::class)->middleware(['auth', 'role:admin'])->names('admin.order_products');
 

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('phone_number')->unique();
             $table->string('email')->unique();
+            $table->boolean('deleted')->default(false);
+
             $table->timestamps();
         });
     }

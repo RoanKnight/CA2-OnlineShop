@@ -14,7 +14,8 @@ class Product extends Model
       'price',
       'brand',
       'stock',
-      'product_image'
+      'product_image',
+      'deleted'
   ];
 
   /**

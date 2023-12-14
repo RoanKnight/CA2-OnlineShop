@@ -39,9 +39,15 @@
 
       @forelse($order->products as $product)
       <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-          <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-              {{ $product->name }}
-          </td>
+            @if($product->deleted)
+              <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap      dark:text-white">
+                {{ $product->name }} <strong class="text-red-500">(Product is no longer available)</strong>
+              </td>
+            @else
+              <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                {{ $product->name }}
+              </td>
+            @endif
           <td class="px-6 py-4">
               {{ $product->price }}
           </td>

@@ -38,11 +38,20 @@
 
   <a class="editButton" href="{{ route('admin.products.edit', $product->id) }}">Edit</a>
 
+  @if($product->deleted)
+    <form method="POST" action="{{ route('admin.products.restore', $product->id) }}">
+        @csrf
+        @method('PATCH')
+        <button class="restoreButton" type="submit">Restore</button>
+    </form>
+  @else
     <form method="POST" action="{{ route('admin.products.destroy', $product->id) }}">
         @csrf
         @method('DELETE')
         <button class="deleteButton" type="submit">Delete</button>
     </form>
+  @endif
+
 
   </div>
 

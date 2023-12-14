@@ -29,6 +29,9 @@
                     Email
                 </th>
                 <th scope="col" class="px-6 py-3">
+                  Deleted
+                </th>
+                <th scope="col" class="px-6 py-3">
                   Action
                 </th>
             </tr>
@@ -47,6 +50,13 @@
             </td>
             <td class="px-6 py-4">
               {{ $customer->email }}
+            </td>
+            <td class="px-6 py-4">
+              @if($customer->deleted)
+                  <span class="text-red-500">True</span>
+              @else
+                  <span class="text-green-500">False</span>
+              @endif
             </td>
             <td class="px-6 py-4">
                 <a class="edit" href="{{route('admin.customers.show', $customer->id)}}" >Edit</a>

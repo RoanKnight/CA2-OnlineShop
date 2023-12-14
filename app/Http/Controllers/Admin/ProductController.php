@@ -186,13 +186,26 @@ class ProductController extends Controller
     {
         // Retrieve the product by its ID and delete it
         $product = Product::findOrFail($id);
-        // $product->orders->detach();
-        $product->delete();
 
-        // $product->deleted = true;
-        // $product->save();
+        // Update the deleted attribute to true
+        $product->update(['deleted' => true]);
 
         // Redirect to the product index page with a success message
         return redirect()->route('admin.products.index')->with('status', 'Product deleted successfully');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function restore(string $id)
+    {
+        // Retrieve the product by its ID and restores it
+        $product = Product::findOrFail($id);
+
+        // Update the deleted attribute to true
+        $product->update(['deleted' => false]);
+
+        // Redirect to the product index page with a success message
+        return redirect()->route('admin.products.index')->with('status', 'Product restored successfully');
     }
 }

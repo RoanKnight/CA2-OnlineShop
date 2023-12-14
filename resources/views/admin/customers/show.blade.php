@@ -62,11 +62,19 @@
 
   <a class="editButton" href="{{ route('admin.customers.edit', $customer->id) }}">Edit</a>
 
+  @if($customer->deleted)
+    <form method="POST" action="{{ route('admin.customers.restore', $customer->id) }}">
+        @csrf
+        @method('PATCH')
+        <button class="restoreButton" type="submit">Restore</button>
+    </form>
+  @else
     <form method="POST" action="{{ route('admin.customers.destroy', $customer->id) }}">
         @csrf
         @method('DELETE')
         <button class="deleteButton" type="submit">Delete</button>
     </form>
+  @endif
 
   </div>
 

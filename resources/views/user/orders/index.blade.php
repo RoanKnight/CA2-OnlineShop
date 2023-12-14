@@ -9,6 +9,8 @@
 @endsection
 
 @section('content')
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
  
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -43,5 +45,6 @@
         <h4>No Orders found!</h4>
     @endforelse
     </table>
+</div>
 </div>
 @endsection

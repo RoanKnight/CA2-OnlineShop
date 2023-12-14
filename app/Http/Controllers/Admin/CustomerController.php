@@ -144,11 +144,28 @@ class CustomerController extends Controller
      */
     public function destroy(string $id)
     {
-        // Find a customer by their unique ID and delete it
+        // Retrieve the customer by its ID and delete it
         $customer = Customer::findOrFail($id);
-        $customer->delete();
 
-        // Redirect to the 'admin.customers.index' route with a success message
+        // Update the deleted attribute to true
+        $customer->update(['deleted' => true]);
+
+        // Redirect to the customer index page with a success message
         return redirect()->route('admin.customers.index')->with('status', 'Customer deleted successfully');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function restore(string $id)
+    {
+        // Retrieve the customer by its ID and restores it
+        $customer = Customer::findOrFail($id);
+
+        // Update the deleted attribute to true
+        $customer->update(['deleted' => false]);
+
+        // Redirect to the customer index page with a success message
+        return redirect()->route('admin.customers.index')->with('status', 'Customer restored successfully');
     }
 }

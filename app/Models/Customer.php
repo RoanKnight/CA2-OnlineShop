@@ -13,7 +13,8 @@ class Customer extends Model
       'first_name',
       'last_name',
       'phone_number',
-      'email'
+      'email',
+      'deleted'
   ];
 
     /**

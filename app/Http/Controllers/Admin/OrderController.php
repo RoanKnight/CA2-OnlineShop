@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\OrderProduct;
@@ -37,11 +38,14 @@ class OrderController extends Controller
     {
         Auth::user()->authorizeRoles('admin');
 
+        // Get all customer IDs
+        $customers = Customer::pluck('id')->sort();
+
+        // Get all products
         $products = Product::all();
 
-        return view('admin.orders.create', [
-            'products' => $products
-        ]);
+        // Put the customer IDs and products to the view
+        return view('admin.orders.create', compact('customers', 'products'));
     }
 
     /**
@@ -49,6 +53,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+
       // Validation rules
       $rules = [
           'order_date' => 'required|date',
@@ -85,7 +90,7 @@ class OrderController extends Controller
         $order->products()->attach($product_id, [
             'discount_price' => $discount_price,
         ]);
-      }
+      }       
 
       return redirect()->route('admin.orders.index')->with('status', 'Created a new order');
     }

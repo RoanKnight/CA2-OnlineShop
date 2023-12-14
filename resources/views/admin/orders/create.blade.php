@@ -33,13 +33,19 @@
 
     <div>
       <div class="headings">
-        <label class="heading">Customer_id</label>
+          <label class="heading">Customer_id</label>
           @if($errors->has('customer_id'))
-            <span class="errors"> {{ $errors->first('customer_id') }} </span>
+              <span class="errors">{{ $errors->first('customer_id') }}</span>
           @endif
       </div>
-        <input class="inputField" placeholder="Customer id...." type="text" name="customer_id" id="customer_id" value="{{ old('customer_id') }}"/>
-    </div>
+      <select class="inputField" name="customer_id" id="customer_id">
+          @foreach($customers as $customer)
+              <option value="{{ $customer }}" {{ old('customer_id') == $customer ? 'selected' : '' }}>
+                  {{ $customer }}
+              </option>
+          @endforeach
+      </select>
+  </div>
 
     <div>
       <div class="headings">

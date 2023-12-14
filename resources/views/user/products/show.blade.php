@@ -9,6 +9,7 @@
 @section('content')
 
 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
   <div>
     <label class="heading">Name</label>
     <input class="inputField" value="{{ $product->name }}" readonly/>
@@ -35,7 +36,6 @@
       <img class="showImage" width="300" src={{ asset("storage/images/" . $product->product_image) }} />
     </div>
   </div>
-
   </div>
 
 @endsection
