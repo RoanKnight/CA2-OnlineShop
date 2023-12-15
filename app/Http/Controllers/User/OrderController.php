@@ -15,23 +15,23 @@ class OrderController extends Controller
     $this->middleware('auth', ['except' => []]);
   }
 
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $orders = Order::where('customer_id', '=', Auth::id())->get();
-        return view('user.orders.index')->with('orders', $orders);
-    }
+  /**
+   * Display a listing of the resource.
+   */
+  public function index()
+  {
+      $orders = Order::where('customer_id', '=', Auth::id())->get();
+      return view('user.orders.index')->with('orders', $orders);
+  }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
+  /**
+   * Display the specified resource.
+   */
+  public function show(string $id)
+  {
 
-        // Find a order by their ID, and then display the 'orders.show' view
-        $order = Order::findOrFail($id);
-        return view('user.orders.show')->with('order', $order);
-    }
+      // Find an order by its ID and then display the 'orders.show' view
+      $order = Order::findOrFail($id);
+      return view('user.orders.show')->with('order', $order);
+  }
 }

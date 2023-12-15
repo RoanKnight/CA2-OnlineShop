@@ -57,12 +57,15 @@
 
       <div class="productList">
       @foreach($products as $product)
+        @if($product->deleted)
+        @else
           <div class="productItem">
               <input type="checkbox" name="products[]" value="{{ $product->id }}"
                      id="product_{{ $product->id }}">
               <label for="product_{{ $product->id }}">{{ $product->name }}</label>
               <input type="text" name="discount_prices[{{ $product->id }}]" placeholder="Discount Price (Optional)" value="{{ old('discount_prices.' . $product->id) }}">
           </div>
+          @endif
       @endforeach
       </div>
     </div>

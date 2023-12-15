@@ -9,28 +9,28 @@ use App\Models\Product;
 class ProductController extends Controller
 {
 
-  // Users will be redirected to register page if they try to access any page associated with this controller while not logged in
+  // Users will be redirected to the register page if they try to access any page associated with this controller while not logged in
   public function __construct() {
     $this->middleware('auth', ['except' => []]);
   }
 
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $products = Product::paginate(10);
-        return view('user.products.index')->with('products', $products);
-    }
+  /**
+   * Display a listing of the resource.
+   */
+  public function index()
+  {
+      $products = Product::paginate(10);
+      return view('user.products.index')->with('products', $products);
+  }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
+  /**
+   * Display the specified resource.
+   */
+  public function show(string $id)
+  {
 
-        // Find a order by their ID, and then display the 'orders.show' view
-        $product = Product::findOrFail($id);
-        return view('user.products.show')->with('product', $product);
-    }
+      // Find a product by its ID, and then display the 'products.show' view
+      $product = Product::findOrFail($id);
+      return view('user.products.show')->with('product', $product);
+  }
 }

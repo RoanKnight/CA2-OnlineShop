@@ -14,23 +14,23 @@ class OrderProductController extends Controller
     $this->middleware('auth', ['except' => []]);
   }
 
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $order_products = OrderProduct::paginate(10);
-        return view('user.order_products.index')->with('order_products', $order_products);
-    }
+  /**
+   * Display a listing of the resource.
+   */
+  public function index()
+  {
+      $order_products = OrderProduct::paginate(10);
+      return view('user.order_products.index')->with('order_products', $order_products);
+  }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
+  /**
+   * Display the specified resource.
+   */
+  public function show(string $id)
+  {
 
-        // Find a order by their ID, and then display the 'orders.show' view
-        $order_product = OrderProduct::findOrFail($id);
-        return view('user.order_products.show')->with('order_product', $order_product);
-    }
+      // Find an order product by its ID and then display the 'order_products.show' view
+      $order_product = OrderProduct::findOrFail($id);
+      return view('user.order_products.show')->with('order_product', $order_product);
+  }
 }

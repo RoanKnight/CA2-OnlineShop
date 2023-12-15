@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Order;
+use App\Models\OrderProduct;
 use Auth;
 
 class CustomerController extends Controller
@@ -24,12 +25,13 @@ class CustomerController extends Controller
     {
         // Auth::user()->authorizeRoles('admin');
 
-        // Retrieve all customers
+        // Retrieve all customers from the database
         $customers = Customer::all();
+
 
         // Return the 'admin.customers.index' view and pass the customers data to it
         return view('admin.customers.index', [
-            'customers' => $customers
+            'customers' => $customers,
         ]);
     }
 
@@ -40,9 +42,8 @@ class CustomerController extends Controller
     {
         Auth::user()->authorizeRoles('admin');
 
-        $orders = Order::all();
-
-        return view('admin.customers.create')->with('orders', $orders);
+        // Return the 'admin.customers.create' view
+        return view('admin.customers.create');
     }
 
     /**
@@ -52,10 +53,10 @@ class CustomerController extends Controller
     {
         // Validation rules for the incoming request data
         $rules = [
-          'first_name' => 'required|string|min:2|max:150',
-          'last_name' => 'required|string|min:2|max:150',
-          'phone_number' => "required|unique:customers,phone_number|regex:/^08[35679]\d{7}$/",
-          'email' => 'required|email|unique:customers,email|min:5|max:1000',
+            'first_name' => 'required|string|min:2|max:150',
+            'last_name' => 'required|string|min:2|max:150',
+            'phone_number' => "required|unique:customers,phone_number|regex:/^08[35679]\d{7}$/",
+            'email' => 'required|email|unique:customers,email|min:5|max:1000',
         ];
 
         // Custom error messages for validation rules
@@ -88,6 +89,8 @@ class CustomerController extends Controller
     {
         // Find a customer by their ID, and then display the 'admin.customers.show' view
         $customer = Customer::findOrFail($id);
+
+        // Return the 'admin.customers.show' view and pass the customer data to it
         return view('admin.customers.show', [
             'customer' => $customer
         ]);
@@ -98,7 +101,10 @@ class CustomerController extends Controller
      */
     public function edit(string $id)
     {
+        // Find a customer by their ID
         $customer = Customer::findOrFail($id);
+
+        // Return the 'admin.customers.edit' view and pass the customer data to it
         return view('admin.customers.edit', [
             'customer' => $customer
         ]);
@@ -125,6 +131,7 @@ class CustomerController extends Controller
             'phone_number.regex' => 'The phone number must be a valid Irish mobile phone number',
         ];
 
+        // Validate the incoming request data using the defined rules and messages
         $request->validate($rules, $messages);
 
         // Find the customer to update by their unique ID
@@ -159,10 +166,10 @@ class CustomerController extends Controller
      */
     public function restore(string $id)
     {
-        // Retrieve the customer by its ID and restores it
+        // Retrieve the customer by its ID and restore it
         $customer = Customer::findOrFail($id);
 
-        // Update the deleted attribute to true
+        // Update the deleted attribute to false
         $customer->update(['deleted' => false]);
 
         // Redirect to the customer index page with a success message

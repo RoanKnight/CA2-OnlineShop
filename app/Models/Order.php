@@ -12,6 +12,7 @@ class Order extends Model
   protected $fillable = [
       'order_date',
       'customer_id',
+      'deleted'
   ];
 
   /**

@@ -12,6 +12,12 @@ class OrderProduct extends Model
   protected $fillable = [
       'order_id',
       'product_id',
-      'discount_price'
+      'discount_price',
+      'deleted'
   ];
+
+  public function order()
+{
+    return $this->belongsTo(Order::class);
+}
 }

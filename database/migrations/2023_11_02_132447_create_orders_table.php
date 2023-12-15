@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('order_date');
             $table->foreignId('customer_id');
+            $table->boolean('deleted')->default(false);
 
             $table->foreign('customer_id')->references('id')->on('customers')->onUpdate('cascade')->onDelete('restrict');
 

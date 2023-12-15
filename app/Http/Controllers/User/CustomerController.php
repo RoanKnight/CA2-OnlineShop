@@ -14,23 +14,23 @@ class CustomerController extends Controller
     $this->middleware('auth', ['except' => []]);
   }
 
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $customers = Customer::paginate(10);
-        return view('user.customers.index')->with('customers', $customers);
-    }
+  /**
+   * Display a listing of the resource.
+   */
+  public function index()
+  {
+      $customers = Customer::paginate(10);
+      return view('user.customers.index')->with('customers', $customers);
+  }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
+  /**
+   * Display the specified resource.
+   */
+  public function show(string $id)
+  {
 
-        // Find a customer by their ID, and then display the 'customers.show' view
-        $customer = Customer::findOrFail($id);
-        return view('user.customers.show')->with('customer', $customer);
-    }
+      // Find a customer by their ID, and then display the 'customers.show' view
+      $customer = Customer::findOrFail($id);
+      return view('user.customers.show')->with('customer', $customer);
+  }
 }
