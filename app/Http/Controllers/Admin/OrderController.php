@@ -137,13 +137,15 @@ class OrderController extends Controller
         // Define validation rules for updating an order
         $rules = [
             'order_date' => 'required|date',
-            'customer_id' => 'required|integer'
+            'customer_id' => 'required|integer',
+            'products' => ['required', 'array', 'exists:products,id'],
+            'discount_prices.*' => ['nullable', 'numeric'],
         ];
 
         // Custom error messages for validation
         $messages = [
             'order_date' => 'The order date is required',
-            'customer_id' => 'The customer id is required'
+            'customer_id' => 'The customer id is required',
         ];
 
         // Validate the incoming request data using the defined rules and messages
@@ -155,26 +157,22 @@ class OrderController extends Controller
         $order->customer_id = $request->customer_id;
         $order->save();
 
-        // Associate products with the order and save discount prices
-        $products = $request->input('products');
-        $discount_prices = $request->input('discount_prices', []);
+        // Sync products to the order
+        $order->products()->sync([]);
 
-        foreach ($products as $product_id) {
+        foreach ($request->input('products') as $product_id) {
             $product = Product::find($product_id);
-            $discount_price = isset($discount_prices[$product_id])
-                ? $discount_prices[$product_id]
-                : ($product ? $product->price : 0.00);
+            $discount_price = $request->input('discount_prices.' . $product_id, 0.00);
 
+            // Attach the current product with the order and save the discount price
             $order->products()->attach($product_id, [
                 'discount_price' => $discount_price,
             ]);
         }
 
-        // Sync products to the order
-        $order->products()->sync($request->input('products'));
-
         return redirect()->route('admin.orders.index')->with('status', 'Updated order');
     }
+
 
     /**
      * Remove the specified resource from storage.
